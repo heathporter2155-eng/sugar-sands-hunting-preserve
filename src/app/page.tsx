@@ -1,22 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 import Logo from "@/components/Logo";
 
 export default function Home() {
   return (
     <>
-      {/* Hero Section - Full viewport with plantation atmosphere */}
+      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background - will be replaced with real photo */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('/images/hero-pine-plantation.jpg')",
-            backgroundColor: "#1a2e14",
-          }}
+        <Image
+          src="/images/hero-pine-plantation.jpg"
+          alt="Pine plantation at Sugar Sands Hunting Preserve"
+          fill
+          className="object-cover"
+          priority
+          quality={80}
         />
         <div className="hero-overlay absolute inset-0" />
-
-        {/* Decorative border frame */}
         <div className="absolute inset-4 sm:inset-8 border border-cream-200/20 rounded-sm pointer-events-none" />
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -55,7 +54,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <svg className="w-6 h-6 text-cream-300/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -143,7 +141,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Photo Strip / Gallery Preview */}
+      {/* Photo Strip */}
       <section className="aged-paper py-24 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-earth-500 tracking-[0.3em] uppercase text-sm font-body font-medium mb-4">
@@ -151,17 +149,31 @@ export default function Home() {
           </p>
           <h2 className="section-heading mb-12">From the Field</h2>
 
-          {/* Photo grid placeholder - will use real photos */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+            {[
+              { src: "/images/gallery/property-pines-1.jpg", alt: "Pine plantation", span: true },
+              { src: "/images/gallery/wildlife-trailcam-1.jpg", alt: "Trail camera wildlife" },
+              { src: "/images/gallery/hunting-harvest-1.jpg", alt: "Successful harvest" },
+              { src: "/images/gallery/property-pines-2.jpg", alt: "Pine rows" },
+              { src: "/images/gallery/wildlife-deer-1.jpg", alt: "Whitetail deer" },
+              { src: "/images/gallery/hunting-harvest-4.jpg", alt: "Turkey harvest", span: true },
+              { src: "/images/gallery/property-land-1.jpg", alt: "Preserve landscape" },
+              { src: "/images/gallery/wildlife-trailcam-2.jpg", alt: "Trail cam capture" },
+            ].map((photo, i) => (
               <div
                 key={i}
                 className={`relative overflow-hidden rounded-sm ${
-                  i === 1 || i === 6 ? "md:col-span-2 md:row-span-2" : ""
+                  photo.span ? "md:col-span-2 md:row-span-2" : ""
                 }`}
               >
-                <div className="aspect-square bg-pine-200 flex items-center justify-center">
-                  <span className="text-pine-400 text-sm font-body">Photo {i}</span>
+                <div className="aspect-square relative">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                    sizes={photo.span ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
+                  />
                 </div>
               </div>
             ))}
@@ -173,8 +185,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA - Join */}
-      <section className="relative py-24 px-4 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/images/cta-pines.jpg')", backgroundColor: "#2a3b24" }}>
+      {/* CTA */}
+      <section className="relative py-24 px-4 overflow-hidden">
+        <Image
+          src="/images/cta-pines.jpg"
+          alt="Pine forest"
+          fill
+          className="object-cover"
+          quality={70}
+        />
         <div className="absolute inset-0 bg-pine-950/80" />
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream-50 tracking-tight mb-6">
