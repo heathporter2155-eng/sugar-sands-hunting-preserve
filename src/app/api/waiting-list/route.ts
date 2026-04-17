@@ -34,9 +34,29 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Send notification email via Formspree or similar
-    // For now, log the submission
-    console.log("New waiting list submission:", { firstName, lastName, email, phone });
+    // Send email notification to admin via Formspree
+    const formspreeId = process.env.FORMSPREE_ID;
+    if (formspreeId) {
+      try {
+        await fetch(`https://formspree.io/f/${formspreeId}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: `🦌 New Membership Inquiry: ${firstName} ${lastName}`,
+            name: `${firstName} ${lastName}`,
+            email,
+            phone,
+            location: `${city || "N/A"}, ${state || "FL"}`,
+            experience: huntingExperience || "Not specified",
+            referredBy: referredBy || "None",
+            message: message || "No message provided",
+            _replyto: email,
+          }),
+        });
+      } catch (emailError) {
+        console.error("Formspree notification error:", emailError);
+      }
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

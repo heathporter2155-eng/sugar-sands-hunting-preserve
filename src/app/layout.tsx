@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "An exclusive private hunting club on a pine plantation in South Walton County, Florida. Where the love of the outdoors, family, and stewardship come together.",
   keywords:
-    "hunting club, hunting preserve, South Walton County, Florida hunting, pine plantation, deer hunting, turkey hunting, private hunting club",
+    "hunting club, hunting preserve, South Walton County, Florida hunting, pine plantation, deer hunting, turkey hunting, private hunting club, Walton County hunting, Freeport FL hunting",
   openGraph: {
     title: "Sugar Sands Hunting Preserve",
     description:
@@ -20,6 +20,28 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  name: "Sugar Sands Hunting Preserve",
+  description:
+    "An exclusive private hunting club on a pine plantation in South Walton County, Florida. Where the love of the outdoors, family, and stewardship come together.",
+  url: "https://sugarsandshuntingpreserve.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Freeport",
+    addressRegion: "FL",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 30.5,
+    longitude: -86.13,
+  },
+  sport: "Hunting",
+  keywords: "hunting club, hunting preserve, deer hunting, turkey hunting, pine plantation",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +49,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="antialiased">
         <Navbar />
         <main>{children}</main>
