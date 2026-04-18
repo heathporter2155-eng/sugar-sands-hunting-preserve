@@ -4,8 +4,8 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      {/* Title Header — above hero photo */}
-      <div className="bg-pine-950 pt-20 pb-1 px-4">
+      {/* Title Header — directly above hero photo */}
+      <div className="bg-pine-950 pt-24 px-4">
         <h1 className="sr-only">Sugar Sands Hunting Preserve — Private Hunting Club in Watersound, South Walton, Florida</h1>
         <div className="max-w-4xl mx-auto text-center">
           <p className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
@@ -17,8 +17,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative min-h-[80vh] sm:min-h-screen flex flex-col overflow-hidden">
+      {/* Hero Section — flush against title */}
+      <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col overflow-hidden -mt-0">
         <Image
           src="/images/hero-pine-plantation.jpg"
           alt="Pine plantation at Sugar Sands Hunting Preserve"
