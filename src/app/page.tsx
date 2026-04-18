@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       {/* Title Header — above hero photo */}
-      <div className="bg-pine-950 pt-20 pb-0 sm:pt-24 sm:pb-0 px-4">
+      <div className="bg-pine-950 pt-24 pb-4 sm:pt-28 sm:pb-6 px-4">
         <h1 className="sr-only">Sugar Sands Hunting Preserve — Private Hunting Club in Watersound, South Walton, Florida</h1>
         <div className="max-w-4xl mx-auto text-center">
           <p className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
