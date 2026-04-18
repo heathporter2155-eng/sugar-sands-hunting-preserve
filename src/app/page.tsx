@@ -5,25 +5,17 @@ export default function Home() {
   return (
     <>
       {/* Logo Header — above hero photo */}
-      <div className="bg-pine-950 pt-8 pb-6 px-4">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="font-display text-sm tracking-[0.5em] uppercase text-cream-400/40 mb-3">
-            ✦ &nbsp; ✦ &nbsp; ✦
-          </p>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-cream-50 tracking-wide leading-none uppercase">
-            Sugar Sands
-          </h1>
-          <div className="flex items-center justify-center gap-3 my-3">
-            <div className="h-px flex-1 max-w-16 bg-earth-400/40" />
-            <span className="text-earth-400 text-lg">⟡</span>
-            <div className="h-px flex-1 max-w-16 bg-earth-400/40" />
-          </div>
-          <p className="font-display text-xl sm:text-2xl md:text-3xl font-semibold text-cream-100 tracking-[0.25em] uppercase">
-            Hunting Preserve
-          </p>
-          <p className="mt-3 text-cream-400/50 text-xs tracking-[0.3em] uppercase font-body">
-            Est. 1999
-          </p>
+      <div className="bg-pine-950 pt-28 pb-8 px-4">
+        <h1 className="sr-only">Sugar Sands Hunting Preserve — Private Hunting Club in Watersound, South Walton, Florida</h1>
+        <div className="max-w-md sm:max-w-lg mx-auto">
+          <Image
+            src="/images/logo-sign.png"
+            alt="Sugar Sands Hunting Preserve — turkey, bear, and deer silhouettes with Est. 1999"
+            width={1080}
+            height={728}
+            className="w-full h-auto"
+            priority
+          />
         </div>
       </div>
 
