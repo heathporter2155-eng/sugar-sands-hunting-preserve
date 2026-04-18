@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       {/* Title Header — above hero photo */}
-      <div className="bg-pine-950 pt-20 pb-3 sm:pt-24 sm:pb-6 px-4">
+      <div className="bg-pine-950 pt-20 pb-0 sm:pt-24 sm:pb-0 px-4">
         <h1 className="sr-only">Sugar Sands Hunting Preserve — Private Hunting Club in Watersound, South Walton, Florida</h1>
         <div className="max-w-4xl mx-auto text-center">
           <p className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
@@ -18,7 +18,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] sm:min-h-screen flex flex-col overflow-hidden">
+      <section className="relative min-h-[80vh] sm:min-h-screen flex flex-col overflow-hidden">
         <Image
           src="/images/hero-pine-plantation.jpg"
           alt="Pine plantation at Sugar Sands Hunting Preserve"
