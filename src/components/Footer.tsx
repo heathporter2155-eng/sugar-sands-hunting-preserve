@@ -8,14 +8,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 text-cream-100 mb-4">
+            <div className="flex items-center text-cream-100 mb-4">
               <Logo size="sm" />
-              <div>
-                <p className="font-display text-xl font-semibold tracking-wide">Sugar Sands</p>
-                <p className="font-display text-xs tracking-[0.2em] uppercase text-earth-400">
-                  Hunting Preserve
-                </p>
-              </div>
             </div>
             <p className="text-cream-300/70 text-sm leading-relaxed mt-4">
               A private hunting preserve nestled in the pine plantations of South Walton, Florida.
