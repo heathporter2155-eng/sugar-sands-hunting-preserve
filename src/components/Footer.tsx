@@ -18,8 +18,8 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-cream-300/70 text-sm leading-relaxed mt-4">
-              A private hunting preserve nestled in the pine plantations of South Walton County, Florida.
-              Where the love of the outdoors, family, and stewardship come together.
+              A private hunting preserve nestled in the pine plantations of South Walton, Florida.
+              Where the love of the outdoors, family, and stewardship merge as one.
             </p>
           </div>
 
@@ -53,9 +53,7 @@ export default function Footer() {
               Location
             </h3>
             <p className="text-cream-300/70 text-sm leading-relaxed">
-              South Walton County, Florida
-              <br />
-              Freeport, FL
+              South Walton, Watersound, FL
             </p>
             <div className="mt-4">
               <Link
@@ -77,7 +75,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Sugar Sands Hunting Preserve. All rights reserved.
           </p>
           <p className="text-cream-400/50 text-xs">
-            South Walton County, Florida
+            South Walton, Watersound, FL
           </p>
         </div>
       </div>

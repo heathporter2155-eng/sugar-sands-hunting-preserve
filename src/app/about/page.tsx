@@ -69,7 +69,7 @@ export default function AboutPage() {
               Stewardship First
             </h3>
             <p>
-              We take our role as stewards seriously. Through prescribed burns, selective timber
+              We take our role as stewards seriously. Through selective timber
               management, food plot cultivation, and wildlife monitoring, we actively manage the
               land to promote biodiversity and healthy game populations. Every decision we make
               is guided by a simple question: <em>will this land be better for the next generation?</em>

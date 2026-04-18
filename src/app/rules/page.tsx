@@ -118,7 +118,6 @@ export default function RulesPage() {
                 "Food plots are maintained for wildlife — no unauthorized planting or modification.",
                 "All gates must be closed and locked after entry and exit.",
                 "No ATVs or UTVs without prior approval. Designated trails only.",
-                "Campfires are permitted only in designated fire rings. Fully extinguish before leaving.",
                 "Report any property damage, trespassing, or suspicious activity to the administrator immediately.",
               ].map((rule, i) => (
                 <div key={i} className="flex gap-4 p-4 bg-cream-100 border border-earth-200 rounded-sm">
