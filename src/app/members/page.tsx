@@ -1,36 +1,13 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import { redirect } from "next/navigation";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase-server";
+import LogoutButton from "@/components/LogoutButton";
 
-// This will be replaced with Supabase auth check
-function useAuth() {
-  const [user, setUser] = useState<{ email: string; role: string } | null>(null);
-  const [loading, setLoading] = useState(true);
+export const dynamic = "force-dynamic";
 
-  useEffect(() => {
-    // Placeholder - will check Supabase session
-    setLoading(false);
-  }, []);
-
-  return { user, loading };
-}
-
-// Placeholder member data - will come from Supabase
-const PLACEHOLDER_MEMBERS = [
-  { id: 1, name: "Heath Porter", role: "Administrator", joinDate: "2024" },
-];
-
-export default function MembersPage() {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-cream-50 pt-20">
-        <div className="animate-pulse text-bark-400 font-display text-xl">Loading...</div>
-      </div>
-    );
-  }
+export default async function MembersPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) {
     return (
@@ -73,6 +50,23 @@ export default function MembersPage() {
     );
   }
 
+  // Fetch members
+  const { data: members } = await supabase
+    .from("members")
+    .select("*")
+    .eq("status", "active")
+    .order("role", { ascending: true })
+    .order("last_name", { ascending: true });
+
+  // Check if current user is admin
+  const { data: currentMember } = await supabase
+    .from("members")
+    .select("role")
+    .eq("user_id", user.id)
+    .single();
+
+  const isAdmin = currentMember?.role === "admin";
+
   return (
     <>
       <section className="relative pt-32 pb-20 px-4 bg-pine-950">
@@ -83,39 +77,68 @@ export default function MembersPage() {
           <h1 className="font-display text-5xl md:text-6xl font-bold text-cream-50 tracking-tight">
             Member Directory
           </h1>
+          <div className="mt-4">
+            <LogoutButton />
+          </div>
         </div>
       </section>
 
       <section className="aged-paper py-12 px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
+          {isAdmin && (
+            <div className="mb-6 p-4 bg-earth-100 border border-earth-300 rounded-sm">
+              <p className="text-earth-800 text-sm font-medium">
+                🔑 You are logged in as Administrator
+              </p>
+            </div>
+          )}
+
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b-2 border-earth-300">
                   <th className="text-left py-3 px-4 font-display font-semibold text-bark-800">Name</th>
+                  <th className="text-left py-3 px-4 font-display font-semibold text-bark-800">Address</th>
+                  <th className="text-left py-3 px-4 font-display font-semibold text-bark-800">Phone</th>
+                  <th className="text-left py-3 px-4 font-display font-semibold text-bark-800">Email</th>
                   <th className="text-left py-3 px-4 font-display font-semibold text-bark-800">Role</th>
-                  <th className="text-left py-3 px-4 font-display font-semibold text-bark-800">Member Since</th>
                 </tr>
               </thead>
               <tbody>
-                {PLACEHOLDER_MEMBERS.map((member) => (
+                {members?.map((member) => (
                   <tr key={member.id} className="border-b border-earth-200 hover:bg-cream-100">
-                    <td className="py-3 px-4 text-bark-700">{member.name}</td>
+                    <td className="py-3 px-4 text-bark-700 font-medium">
+                      {member.first_name} {member.last_name}
+                    </td>
+                    <td className="py-3 px-4 text-bark-600 text-sm">
+                      {member.address && `${member.address}, `}{member.city}, {member.state} {member.zip}
+                    </td>
+                    <td className="py-3 px-4 text-bark-600 text-sm">
+                      <a href={`tel:${member.phone}`} className="hover:text-pine-700">{member.phone}</a>
+                    </td>
+                    <td className="py-3 px-4 text-bark-600 text-sm">
+                      <a href={`mailto:${member.email}`} className="hover:text-pine-700">{member.email}</a>
+                    </td>
                     <td className="py-3 px-4">
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                        member.role === "Administrator"
+                        member.role === "admin"
                           ? "bg-earth-600 text-cream-50"
                           : "bg-pine-100 text-pine-800"
                       }`}>
-                        {member.role}
+                        {member.role === "admin" ? "Administrator" : "Member"}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-bark-500">{member.joinDate}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+
+          {(!members || members.length === 0) && (
+            <div className="text-center py-12">
+              <p className="text-bark-400">No members found.</p>
+            </div>
+          )}
         </div>
       </section>
     </>

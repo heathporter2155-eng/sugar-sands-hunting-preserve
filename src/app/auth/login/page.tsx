@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Logo from "@/components/Logo";
+import { createClient } from "@/lib/supabase-browser";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,18 +19,19 @@ export default function LoginPage() {
     setErrorMsg("");
 
     try {
-      // Will integrate with Supabase auth
-      // const { createClient } = await import("@/lib/supabase-browser");
-      // const supabase = createClient();
-      // const { error } = await supabase.auth.signInWithPassword({ email, password });
-      // if (error) throw error;
-      // window.location.href = "/members";
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-      // Placeholder
-      setErrorMsg("Authentication will be configured once Supabase is set up.");
-      setStatus("error");
+      if (error) {
+        setErrorMsg(error.message);
+        setStatus("error");
+        return;
+      }
+
+      router.push("/members");
+      router.refresh();
     } catch {
-      setErrorMsg("Invalid email or password. Please try again.");
+      setErrorMsg("Something went wrong. Please try again.");
       setStatus("error");
     }
   };
