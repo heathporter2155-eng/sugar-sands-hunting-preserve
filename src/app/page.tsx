@@ -5,13 +5,13 @@ export default function Home() {
   return (
     <>
       {/* Title Header — directly above hero photo */}
-      <div className="bg-pine-950 pt-24 px-4">
+      <div className="bg-pine-950 pt-24 pb-0 px-4 mb-0">
         <h1 className="sr-only">Sugar Sands Hunting Preserve — Private Hunting Club in Watersound, South Walton, Florida</h1>
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center pb-0 mb-0">
           <p className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
             Sugar Sands
           </p>
-          <p className="font-display text-xl sm:text-3xl md:text-4xl font-medium text-earth-400 mt-1 sm:mt-2 tracking-[0.15em]">
+          <p className="font-display text-xl sm:text-3xl md:text-4xl font-medium text-earth-400 mt-1 sm:mt-2 tracking-[0.15em] mb-0 pb-0 leading-tight">
             Hunting Preserve
           </p>
         </div>
