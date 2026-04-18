@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "About Us | Sugar Sands Hunting Preserve",
-  description: "Learn about Sugar Sands Hunting Preserve — our mission, our land, and our commitment to stewardship in South Walton County, Florida.",
+  title: "About Sugar Sands Hunting Preserve | Private Hunting Club Watersound FL",
+  description: "Learn about Sugar Sands Hunting Preserve — a private hunting club on a managed pine plantation in South Walton, Florida. Deer hunting, turkey hunting, and wildlife stewardship since 1999.",
 };
 
 export default function AboutPage() {

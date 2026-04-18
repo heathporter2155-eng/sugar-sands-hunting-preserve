@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Rules & Regulations | Sugar Sands Hunting Preserve",
-  description: "Rules, regulations, and safety guidelines for members of Sugar Sands Hunting Preserve.",
+  title: "Rules & Regulations | Sugar Sands Hunting Preserve | South Walton FL",
+  description: "Rules, regulations, and safety guidelines for members of Sugar Sands Hunting Preserve — a private hunting club in Watersound, South Walton, Florida.",
 };
 
 const HUNTSTAND_URL = "https://app.huntstand.com/dl2/share_huntarea?guid=8fd9b03b-35ff-4558-ba81-17656047bc77&huntarea_name=Sugar%20Sands%20Hunting%20Preserve&inviter=heathporter2155@gmail.com";
