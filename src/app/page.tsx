@@ -4,23 +4,21 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      {/* Logo Header — above hero photo */}
-      <div className="bg-pine-950 pt-28 pb-8 px-4">
+      {/* Title Header — above hero photo */}
+      <div className="bg-pine-950 pt-24 pb-6 px-4">
         <h1 className="sr-only">Sugar Sands Hunting Preserve — Private Hunting Club in Watersound, South Walton, Florida</h1>
-        <div className="max-w-md sm:max-w-lg mx-auto">
-          <Image
-            src="/images/logo-sign.png"
-            alt="Sugar Sands Hunting Preserve — turkey, bear, and deer silhouettes with Est. 1999"
-            width={1080}
-            height={728}
-            className="w-full h-auto"
-            priority
-          />
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="font-display text-5xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
+            Sugar Sands
+          </p>
+          <p className="font-display text-2xl sm:text-3xl md:text-4xl font-medium text-earth-400 mt-2 tracking-[0.15em]">
+            Hunting Preserve
+          </p>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex flex-col overflow-hidden">
+      <section className="relative min-h-screen flex flex-col overflow-hidden">
         <Image
           src="/images/hero-pine-plantation.jpg"
           alt="Pine plantation at Sugar Sands Hunting Preserve"
