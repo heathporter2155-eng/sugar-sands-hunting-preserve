@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col overflow-hidden">
         <Image
           src="/images/hero-pine-plantation.jpg"
           alt="Pine plantation at Sugar Sands Hunting Preserve"
@@ -17,15 +17,22 @@ export default function Home() {
         <div className="hero-overlay absolute inset-0" />
         <div className="absolute inset-4 sm:inset-8 border border-cream-200/20 rounded-sm pointer-events-none" />
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        {/* Title — top of hero */}
+        <div className="relative z-10 text-center px-4 pt-16 sm:pt-24">
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
             Sugar Sands
             <span className="block text-earth-400 text-3xl sm:text-4xl md:text-5xl font-medium mt-2 tracking-[0.15em]">
               Hunting Preserve
             </span>
           </h1>
+        </div>
 
-          <div className="divider-ornament my-8 max-w-xs mx-auto">
+        {/* Spacer to push tagline down */}
+        <div className="flex-1" />
+
+        {/* Tagline + buttons — bottom of hero */}
+        <div className="relative z-10 text-center px-4 pb-20 sm:pb-28">
+          <div className="divider-ornament my-6 max-w-xs mx-auto">
             <span className="text-earth-400 text-2xl">⟡</span>
           </div>
 
@@ -39,7 +46,7 @@ export default function Home() {
             South Walton&apos;s Finest &middot; Est. 1999
           </p>
 
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/about" className="btn-primary">
               Our Story
             </Link>
