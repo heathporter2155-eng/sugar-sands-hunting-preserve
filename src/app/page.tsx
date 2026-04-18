@@ -17,16 +17,16 @@ export default function Home() {
         <div className="hero-overlay absolute inset-0" />
         <div className="absolute inset-4 sm:inset-8 border border-cream-200/20 rounded-sm pointer-events-none" />
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto -mt-16 sm:-mt-24">
-          <div className="flex justify-center mb-6">
-            <Image
-              src="/images/logo-sign.png"
-              alt="Sugar Sands Hunting Preserve sign logo"
-              width={500}
-              height={500}
-              className="w-64 sm:w-80 md:w-96 h-auto drop-shadow-2xl"
-              priority
-            />
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
+            Sugar Sands
+            <span className="block text-earth-400 text-3xl sm:text-4xl md:text-5xl font-medium mt-2 tracking-[0.15em]">
+              Hunting Preserve
+            </span>
+          </h1>
+
+          <div className="divider-ornament my-8 max-w-xs mx-auto">
+            <span className="text-earth-400 text-2xl">⟡</span>
           </div>
 
           <p className="font-display text-xl sm:text-2xl text-cream-200/90 italic max-w-2xl mx-auto leading-relaxed">
