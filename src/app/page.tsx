@@ -4,21 +4,8 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      {/* Title Header — directly above hero photo */}
-      <div className="bg-pine-950 pt-24 pb-0 px-4 mb-0">
-        <h1 className="sr-only">Sugar Sands Hunting Preserve — Private Hunting Club in Watersound, South Walton, Florida</h1>
-        <div className="max-w-4xl mx-auto text-center pb-0 mb-0">
-          <p className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
-            Sugar Sands
-          </p>
-          <p className="font-display text-xl sm:text-3xl md:text-4xl font-medium text-earth-400 mt-1 sm:mt-2 tracking-[0.15em] mb-0 pb-0 leading-tight">
-            Hunting Preserve
-          </p>
-        </div>
-      </div>
-
-      {/* Hero Section — flush against title */}
-      <section className="relative min-h-[85vh] sm:min-h-screen flex flex-col overflow-hidden -mt-0">
+      {/* Hero Section — everything on the photo, no separate header */}
+      <section className="relative min-h-[92vh] sm:min-h-screen flex flex-col overflow-hidden">
         <Image
           src="/images/hero-pine-plantation.jpg"
           alt="Pine plantation at Sugar Sands Hunting Preserve"
@@ -29,11 +16,22 @@ export default function Home() {
         />
         <div className="hero-overlay absolute inset-0" />
 
-        {/* Spacer to push tagline down */}
+        {/* Title — top of photo, below navbar */}
+        <div className="relative z-10 text-center px-4 pt-24 sm:pt-28">
+          <h1 className="sr-only">Sugar Sands Hunting Preserve — Private Hunting Club in Watersound, South Walton, Florida</h1>
+          <p className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
+            Sugar Sands
+          </p>
+          <p className="font-display text-xl sm:text-3xl md:text-4xl font-medium text-earth-400 mt-1 sm:mt-2 tracking-[0.15em]">
+            Hunting Preserve
+          </p>
+        </div>
+
+        {/* Spacer */}
         <div className="flex-1" />
 
-        {/* Tagline + buttons — bottom of hero */}
-        <div className="relative z-10 text-center px-4 pb-10 sm:pb-28">
+        {/* Tagline + buttons — bottom of photo */}
+        <div className="relative z-10 text-center px-4 pb-8 sm:pb-20">
           <div className="divider-ornament my-3 sm:my-6 max-w-xs mx-auto">
             <span className="text-earth-400 text-2xl">⟡</span>
           </div>
@@ -56,12 +54,6 @@ export default function Home() {
               Membership Inquiry
             </Link>
           </div>
-        </div>
-
-        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden sm:block">
-          <svg className="w-6 h-6 text-cream-300/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
         </div>
       </section>
 
