@@ -5,20 +5,20 @@ export default function Home() {
   return (
     <>
       {/* Title Header — above hero photo */}
-      <div className="bg-pine-950 pt-24 pb-6 px-4">
+      <div className="bg-pine-950 pt-20 pb-3 sm:pt-24 sm:pb-6 px-4">
         <h1 className="sr-only">Sugar Sands Hunting Preserve — Private Hunting Club in Watersound, South Walton, Florida</h1>
         <div className="max-w-4xl mx-auto text-center">
-          <p className="font-display text-5xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
+          <p className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-cream-50 tracking-tight leading-tight">
             Sugar Sands
           </p>
-          <p className="font-display text-2xl sm:text-3xl md:text-4xl font-medium text-earth-400 mt-2 tracking-[0.15em]">
+          <p className="font-display text-xl sm:text-3xl md:text-4xl font-medium text-earth-400 mt-1 sm:mt-2 tracking-[0.15em]">
             Hunting Preserve
           </p>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col overflow-hidden">
+      <section className="relative min-h-[70vh] sm:min-h-screen flex flex-col overflow-hidden">
         <Image
           src="/images/hero-pine-plantation.jpg"
           alt="Pine plantation at Sugar Sands Hunting Preserve"
@@ -33,22 +33,22 @@ export default function Home() {
         <div className="flex-1" />
 
         {/* Tagline + buttons — bottom of hero */}
-        <div className="relative z-10 text-center px-4 pb-20 sm:pb-28">
-          <div className="divider-ornament my-6 max-w-xs mx-auto">
+        <div className="relative z-10 text-center px-4 pb-10 sm:pb-28">
+          <div className="divider-ornament my-3 sm:my-6 max-w-xs mx-auto">
             <span className="text-earth-400 text-2xl">⟡</span>
           </div>
 
-          <p className="font-display text-xl sm:text-2xl text-cream-200/90 italic max-w-2xl mx-auto leading-relaxed">
+          <p className="font-display text-lg sm:text-2xl text-cream-200/90 italic max-w-2xl mx-auto leading-relaxed">
             Where the love of the outdoors, the love of family,
             <br className="hidden sm:block" />
             and the love of stewardship merge as one.
           </p>
 
-          <p className="mt-4 text-cream-300/60 text-sm tracking-[0.3em] uppercase font-body">
+          <p className="mt-3 sm:mt-4 text-cream-300/60 text-sm tracking-[0.3em] uppercase font-body">
             South Walton&apos;s Finest &middot; Est. 1999
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link href="/about" className="btn-primary">
               Our Story
             </Link>
@@ -58,7 +58,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 animate-bounce hidden sm:block">
           <svg className="w-6 h-6 text-cream-300/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
