@@ -4,6 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  verification: {
+    google: "epC0WC0nV4SX1MWSiWYiwpa0yWBwwBDQCY0lNI4zXsc",
+  },
   title: "Sugar Sands Hunting Preserve | Private Hunting Club in South Walton, FL",
   description:
     "Sugar Sands Hunting Preserve — a private hunting club on a managed pine plantation in Watersound, South Walton, Florida. Deer hunting, turkey hunting, bear hunting, and wildlife management. Members-only preserve est. 1999. Walton County's premier hunting preserve near Destin, 30A, and Freeport.",
