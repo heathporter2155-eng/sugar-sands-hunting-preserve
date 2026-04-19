@@ -147,14 +147,14 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { src: "/images/gallery/property-pines-1.jpg", alt: "Pine plantation", span: true },
-              { src: "/images/gallery/wildlife-trailcam-1.jpg", alt: "Trail camera wildlife" },
-              { src: "/images/gallery/hunting-harvest-1.jpg", alt: "Successful harvest" },
-              { src: "/images/gallery/property-pines-2.jpg", alt: "Pine rows" },
-              { src: "/images/gallery/wildlife-deer-1.jpg", alt: "Whitetail deer" },
-              { src: "/images/gallery/hunting-harvest-4.jpg", alt: "Turkey harvest", span: true },
-              { src: "/images/gallery/property-land-1.jpg", alt: "Preserve landscape" },
-              { src: "/images/gallery/wildlife-trailcam-2.jpg", alt: "Trail cam capture" },
+              { src: "/images/gallery/photo-IMG_20190323_090827023_BURST000_COVER_TOP.jpg", alt: "The preserve", span: true },
+              { src: "/images/gallery/wildlife-trailcam-3.jpg", alt: "Trail camera — buck" },
+              { src: "/images/gallery/photo-IMG_20230803_062552870_HDR.jpg", alt: "Property grounds" },
+              { src: "/images/gallery/photo-IMG_20240519_074304334.jpg", alt: "Pine plantation" },
+              { src: "/images/gallery/wildlife-trailcam-5.jpg", alt: "Deer at food plot" },
+              { src: "/images/gallery/photo-IMG_20241130_151433345.jpg", alt: "Preserve landscape", span: true },
+              { src: "/images/gallery/wildlife-trailcam-10.jpg", alt: "Buck sighting" },
+              { src: "/images/gallery/photo-IMG_20201115_163605524.jpg", alt: "Property" },
             ].map((photo, i) => (
               <div
                 key={i}
