@@ -1,10 +1,10 @@
 import { createClient } from "@/lib/supabase/server";
-import { createClient as createAdminClient } from "@supabase/supabase-js";
+import { createAdminServerClient } from "@/lib/supabase/admin";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    // Verify the calling user is admin
+    // Verify the calling user is logged in
     const supabase = await createClient();
     const {
       data: { user },
@@ -14,7 +14,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { data: profile } = await supabase
+    // Use admin client to check role (bypasses RLS)
+    const adminSupabase = createAdminServerClient();
+    const { data: profile } = await adminSupabase
       .from("profiles")
       .select("role")
       .eq("id", user.id)
@@ -34,21 +36,6 @@ export async function POST(request: Request) {
     if (memberId === user.id) {
       return NextResponse.json({ error: "Cannot remove yourself" }, { status: 400 });
     }
-
-    // Use service role client
-    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY ||
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVtYW9jaHp3cGxkZWhxeWZ6YmFtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjU1MDY4MiwiZXhwIjoyMDkyMTI2NjgyfQ.xCAaQRRm90Qkwa6FEhzoPcSxznFPyJqcQPRaBcMifyU";
-    if (!serviceRoleKey) {
-      return NextResponse.json(
-        { error: "Server configuration error: missing service role key" },
-        { status: 500 }
-      );
-    }
-
-    const adminSupabase = createAdminClient(
-      "https://umaochzwpldehqyfzbam.supabase.co",
-      serviceRoleKey
-    );
 
     // Delete the user from auth (cascades to profiles due to ON DELETE CASCADE)
     const { error } = await adminSupabase.auth.admin.deleteUser(memberId);
