@@ -25,15 +25,15 @@ const PHOTOS = [
   { id: 19, src: "/images/gallery/wildlife-trailcam-14.jpg", alt: "Trail camera — deer at dusk", category: "wildlife" },
   { id: 20, src: "/images/gallery/wildlife-trailcam-15.jpg", alt: "Trail camera — whitetail buck", category: "wildlife" },
   { id: 21, src: "/images/gallery/wildlife-deer-1.jpg", alt: "Whitetail deer on the preserve", category: "wildlife" },
-  { id: 22, src: "/images/gallery/hunting-harvest-1.jpg", alt: "Successful deer harvest", category: "hunting" },
-  { id: 23, src: "/images/gallery/hunting-harvest-2.jpg", alt: "Hunting season harvest", category: "hunting" },
-  { id: 24, src: "/images/gallery/hunting-harvest-3.jpg", alt: "Youth hunting success", category: "hunting" },
-  { id: 25, src: "/images/gallery/hunting-harvest-4.jpg", alt: "Turkey harvest", category: "hunting" },
-  { id: 26, src: "/images/gallery/hunting-harvest-5.jpg", alt: "Hunting at the preserve", category: "hunting" },
-  { id: 27, src: "/images/gallery/hunting-harvest-6.jpg", alt: "Field harvest", category: "hunting" },
+  { id: 22, src: "/images/gallery/hunting-harvest-1.jpg", alt: "Successful deer harvest", category: "harvest" },
+  { id: 23, src: "/images/gallery/hunting-harvest-2.jpg", alt: "Hunting season harvest", category: "harvest" },
+  { id: 24, src: "/images/gallery/hunting-harvest-3.jpg", alt: "Youth hunting success", category: "harvest" },
+  { id: 25, src: "/images/gallery/hunting-harvest-4.jpg", alt: "Turkey harvest", category: "harvest" },
+  { id: 26, src: "/images/gallery/hunting-harvest-5.jpg", alt: "Hunting at the preserve", category: "harvest" },
+  { id: 27, src: "/images/gallery/hunting-harvest-6.jpg", alt: "Field harvest", category: "harvest" },
 ];
 
-const CATEGORIES = ["all", "property", "wildlife", "hunting"];
+const CATEGORIES = ["all", "property", "wildlife", "harvest"];
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("all");

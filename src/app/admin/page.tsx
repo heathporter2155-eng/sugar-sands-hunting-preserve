@@ -31,12 +31,18 @@ export default async function AdminPage() {
           <h1 className="font-display text-5xl md:text-6xl font-bold text-cream-50 tracking-tight">
             Admin Panel
           </h1>
-          <div className="mt-4 flex items-center justify-center gap-4">
+          <div className="mt-4 flex items-center justify-center gap-4 flex-wrap">
             <Link
               href="/members"
               className="text-cream-300/60 hover:text-cream-100 text-sm font-body transition-colors"
             >
               ← Harvest Log
+            </Link>
+            <Link
+              href="/admin/gallery"
+              className="text-earth-400 hover:text-earth-300 text-sm font-body transition-colors font-medium"
+            >
+              📸 Manage Gallery
             </Link>
             <LogoutButton />
           </div>
