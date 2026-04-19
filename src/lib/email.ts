@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const resend = new Resend("re_DnnZx3kt_Med3777VGXCa4EuYdSnz1YGk");
 
-const ADMIN_EMAIL = "heath@coastalcontractorsofnwfl.com";
+const ADMIN_EMAIL = "heathporter2155@gmail.com";
 const FROM_EMAIL = "Sugar Sands <noreply@sugarsandshuntingpreserve.com>";
 const SITE_URL = "https://sugarsandshuntingpreserve.com";
 
