@@ -1,14 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ChangePasswordPage() {
+  const searchParams = useSearchParams();
+  const isNewMember = typeof window !== "undefined" && document.referrer.includes("callback");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+
+  const heading = isNewMember ? "Welcome to Sugar Sands" : "Change Password";
+  const subtext = isNewMember ? "Set your password to complete your account setup." : "Account Settings";
+  const buttonText = isNewMember ? "Set Password" : "Update Password";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,10 +60,10 @@ export default function ChangePasswordPage() {
       <section className="relative pt-32 pb-20 px-4 bg-pine-950">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-earth-400 tracking-[0.3em] uppercase text-sm font-body font-medium mb-4">
-            Account Settings
+            {subtext}
           </p>
           <h1 className="font-display text-4xl md:text-5xl font-bold text-cream-50 tracking-tight">
-            Change Password
+            {heading}
           </h1>
         </div>
       </section>
@@ -138,7 +145,7 @@ export default function ChangePasswordPage() {
                   disabled={status === "loading"}
                   className="btn-primary w-full disabled:opacity-50"
                 >
-                  {status === "loading" ? "Updating..." : "Update Password"}
+                  {status === "loading" ? "Updating..." : buttonText}
                 </button>
               </form>
             )}
