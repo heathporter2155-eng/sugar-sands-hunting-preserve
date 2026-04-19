@@ -116,7 +116,9 @@ const CATEGORY_COLORS: Record<string, string> = {
 export default function GalleryManagerPage() {
   const [photos, setPhotos] = useState(PHOTOS);
   const [changes, setChanges] = useState<Record<number, string>>({});
+  const [deletions, setDeletions] = useState<Set<number>>(new Set());
   const [copied, setCopied] = useState(false);
+  const [filterCat, setFilterCat] = useState<string>("all");
 
   const changeCategory = (id: number, newCategory: string) => {
     setPhotos((prev) =>
@@ -125,19 +127,39 @@ export default function GalleryManagerPage() {
     setChanges((prev) => ({ ...prev, [id]: newCategory }));
   };
 
+  const toggleDelete = (id: number) => {
+    setDeletions((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const activePhotos = photos.filter((p) => !deletions.has(p.id));
+  const filteredPhotos = filterCat === "all" ? photos : photos.filter((p) => p.category === filterCat);
   const changedCount = Object.keys(changes).length;
+  const deletedCount = deletions.size;
 
   const exportChanges = () => {
-    const output = photos.map(
+    const remaining = photos.filter((p) => !deletions.has(p.id));
+    const output = remaining.map(
       (p) => `  { id: ${p.id}, src: "${p.src}", alt: "${p.alt}", category: "${p.category}" },`
     ).join("\n");
 
-    const summary = photos.reduce((acc, p) => {
+    const summary = remaining.reduce((acc, p) => {
       acc[p.category] = (acc[p.category] || 0) + 1;
       return acc;
     }, {} as Record<string, number>);
 
-    const text = `PHOTO ASSIGNMENTS (${new Date().toLocaleString()})\n\nSummary: ${Object.entries(summary).map(([k, v]) => `${k}: ${v}`).join(", ")}\n\nChanged photos:\n${Object.entries(changes).map(([id, cat]) => {
+    const deletedList = deletions.size > 0
+      ? `\n\nDeleted photos (${deletions.size}):\n${[...deletions].map((id) => {
+          const photo = PHOTOS.find((p) => p.id === id);
+          return `  #${id} "${photo?.alt}" (was ${photo?.category})`;
+        }).join("\n")}`
+      : "";
+
+    const text = `PHOTO ASSIGNMENTS (${new Date().toLocaleString()})\n\nSummary: ${Object.entries(summary).map(([k, v]) => `${k}: ${v}`).join(", ")} (${remaining.length} total)${deletedList}\n\nChanged photos:\n${Object.entries(changes).filter(([id]) => !deletions.has(Number(id))).map(([id, cat]) => {
       const photo = photos.find((p) => p.id === Number(id));
       return `  #${id} "${photo?.alt}" → ${cat}`;
     }).join("\n")}\n\nFull array:\n[\n${output}\n]`;
@@ -165,11 +187,13 @@ export default function GalleryManagerPage() {
       </section>
 
       {/* Sticky action bar */}
-      {changedCount > 0 && (
+      {(changedCount > 0 || deletedCount > 0) && (
         <div className="sticky top-20 z-40 bg-earth-100 border-b border-earth-300 py-3 px-4">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <p className="text-bark-700 text-sm font-medium">
-              {changedCount} photo{changedCount !== 1 ? "s" : ""} changed
+              {changedCount > 0 && `${changedCount} changed`}
+              {changedCount > 0 && deletedCount > 0 && " · "}
+              {deletedCount > 0 && <span className="text-red-600">{deletedCount} marked for deletion</span>}
             </p>
             <button
               onClick={exportChanges}
@@ -183,27 +207,39 @@ export default function GalleryManagerPage() {
 
       <section className="aged-paper py-8 px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Legend */}
-          <div className="flex flex-wrap gap-3 mb-8 justify-center">
+          {/* Filter tabs */}
+          <div className="flex flex-wrap gap-2 mb-8 justify-center">
+            <button
+              onClick={() => setFilterCat("all")}
+              className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+                filterCat === "all" ? "bg-pine-700 text-cream-50 border-pine-700" : "bg-white text-bark-600 border-earth-200 hover:bg-earth-100"
+              }`}
+            >
+              All ({photos.length - deletions.size})
+            </button>
             {CATEGORIES.map((cat) => (
-              <span
+              <button
                 key={cat}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium border ${CATEGORY_COLORS[cat]}`}
+                onClick={() => setFilterCat(cat)}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+                  filterCat === cat ? CATEGORY_COLORS[cat] + " ring-1 ring-current" : "bg-white text-bark-600 border-earth-200 hover:bg-earth-100"
+                }`}
               >
-                {cat.charAt(0).toUpperCase() + cat.slice(1)} ({photos.filter((p) => p.category === cat).length})
-              </span>
+                {cat.charAt(0).toUpperCase() + cat.slice(1)} ({activePhotos.filter((p) => p.category === cat).length})
+              </button>
             ))}
           </div>
 
           {/* Photo grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {photos.map((photo) => {
+            {filteredPhotos.map((photo) => {
               const isChanged = changes[photo.id] !== undefined;
+              const isDeleted = deletions.has(photo.id);
               return (
                 <div
                   key={photo.id}
                   className={`rounded-sm overflow-hidden border-2 ${
-                    isChanged ? "border-earth-400" : "border-transparent"
+                    isDeleted ? "border-red-400 opacity-50" : isChanged ? "border-earth-400" : "border-transparent"
                   } bg-white shadow-sm`}
                 >
                   <div className="relative aspect-square">
@@ -219,10 +255,15 @@ export default function GalleryManagerPage() {
                         #{photo.id}
                       </span>
                     </div>
+                    {isDeleted && (
+                      <div className="absolute inset-0 bg-red-900/40 flex items-center justify-center">
+                        <span className="text-white text-lg font-bold bg-red-600 px-3 py-1 rounded">DELETED</span>
+                      </div>
+                    )}
                   </div>
                   <div className="p-2">
                     <p className="text-bark-600 text-xs mb-2 truncate">{photo.alt}</p>
-                    <div className="flex gap-1">
+                    <div className="flex gap-1 mb-1">
                       {CATEGORIES.map((cat) => (
                         <button
                           key={cat}
@@ -238,6 +279,16 @@ export default function GalleryManagerPage() {
                         </button>
                       ))}
                     </div>
+                    <button
+                      onClick={() => toggleDelete(photo.id)}
+                      className={`w-full mt-1 py-1 rounded text-xs font-medium transition-colors ${
+                        isDeleted
+                          ? "bg-green-100 text-green-700 hover:bg-green-200"
+                          : "bg-red-50 text-red-600 hover:bg-red-100"
+                      }`}
+                    >
+                      {isDeleted ? "↩ Undo Delete" : "🗑 Delete"}
+                    </button>
                   </div>
                 </div>
               );
