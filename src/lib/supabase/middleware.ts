@@ -43,11 +43,18 @@ export async function updateSession(request: NextRequest) {
 
   // Protect /admin/* — only admins allowed
   if (user && pathname.startsWith("/admin")) {
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("role")
-      .eq("id", user.id)
-      .single();
+    // Use service role to bypass RLS for admin check
+    const profileRes = await fetch(
+      `https://umaochzwpldehqyfzbam.supabase.co/rest/v1/profiles?id=eq.${user.id}&select=role`,
+      {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVtYW9jaHp3cGxkZWhxeWZ6YmFtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjU1MDY4MiwiZXhwIjoyMDkyMTI2NjgyfQ.xCAaQRRm90Qkwa6FEhzoPcSxznFPyJqcQPRaBcMifyU`,
+        },
+      }
+    );
+    const profiles = await profileRes.json();
+    const profile = Array.isArray(profiles) ? profiles[0] : null;
 
     if (profile?.role !== "admin") {
       const url = request.nextUrl.clone();

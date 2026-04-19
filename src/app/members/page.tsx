@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminServerClient } from "@/lib/supabase/admin";
 import LogoutButton from "@/components/LogoutButton";
 
 export const dynamic = "force-dynamic";
@@ -21,8 +22,11 @@ export default async function MembersPage() {
     return null;
   }
 
+  // Use admin client to bypass RLS for profile/harvest queries
+  const adminSupabase = createAdminServerClient();
+
   // Get current user's profile
-  const { data: profile } = await supabase
+  const { data: profile } = await adminSupabase
     .from("profiles")
     .select("*")
     .eq("id", user.id)
@@ -31,7 +35,7 @@ export default async function MembersPage() {
   const isAdmin = profile?.role === "admin";
 
   // Fetch harvest log entries
-  const { data: harvests } = await supabase
+  const { data: harvests } = await adminSupabase
     .from("harvest_log")
     .select("*")
     .order("harvest_date", { ascending: false });

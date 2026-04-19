@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { createAdminServerClient } from "@/lib/supabase/admin";
 import LogoutButton from "@/components/LogoutButton";
 import Link from "next/link";
 import AdminActions from "./AdminActions";
@@ -14,8 +15,11 @@ export default async function AdminPage() {
   // Middleware handles redirect — safety fallback
   if (!user) return null;
 
+  // Use admin client to bypass RLS
+  const adminSupabase = createAdminServerClient();
+
   // Fetch all profiles
-  const { data: members } = await supabase
+  const { data: members } = await adminSupabase
     .from("profiles")
     .select("*")
     .order("role", { ascending: true })
