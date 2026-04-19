@@ -53,6 +53,20 @@ export async function POST(request: Request) {
       .from("gallery-photos")
       .getPublicUrl(newPath);
 
+    // Insert into gallery_photos DB table so it shows on the public gallery
+    const { error: dbError } = await adminSupabase
+      .from("gallery_photos")
+      .insert({
+        src: urlData.publicUrl,
+        alt: fileName?.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ") || "Uploaded photo",
+        category,
+        sort_order: 0,
+      });
+
+    if (dbError) {
+      return NextResponse.json({ error: dbError.message }, { status: 500 });
+    }
+
     return NextResponse.json({ success: true, url: urlData.publicUrl, path: newPath });
   } catch {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
