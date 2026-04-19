@@ -77,6 +77,54 @@ export default function RulesPage() {
               ))}
             </div>
           </div>
+
+          {/* Safety Requirements */}
+          <div className="mb-16">
+            <h2 className="section-heading mb-8">Safety Requirements</h2>
+            <div className="bg-red-50 border border-red-200 rounded-sm p-6 mb-6">
+              <p className="text-red-800 font-display font-semibold text-lg mb-2">
+                ⚠️ Safety is Non-Negotiable
+              </p>
+              <p className="text-red-700 text-sm">
+                Violation of any safety rule may result in immediate and permanent revocation of membership.
+              </p>
+            </div>
+            <div className="space-y-4">
+              {[
+                "Hunter orange must be worn during all gun seasons as required by FWC regulations.",
+                "All firearms must be unloaded when transported in vehicles on the property.",
+                "Know your target and what is beyond it. No shooting toward roads, structures, or other stands.",
+              ].map((rule, i) => (
+                <div key={i} className="flex gap-4 p-4 bg-cream-100 border border-earth-200 rounded-sm">
+                  <span className="flex-shrink-0 w-8 h-8 bg-red-700 text-cream-50 rounded-full flex items-center justify-center font-display font-bold text-sm">
+                    !
+                  </span>
+                  <p className="text-bark-700 leading-relaxed">{rule}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Property & Stewardship */}
+          <div className="mb-16">
+            <h2 className="section-heading mb-8">Property & Stewardship</h2>
+            <div className="space-y-4">
+              {[
+                "No littering. Pack out everything you bring in.",
+                "No cutting of live trees without administrator approval.",
+                "Food plots are maintained for wildlife — no unauthorized planting or modification.",
+                "All gates must be closed and locked after entry and exit.",
+                "Report any property damage, trespassing, or suspicious activity to the administrator immediately.",
+              ].map((rule, i) => (
+                <div key={i} className="flex gap-4 p-4 bg-cream-100 border border-earth-200 rounded-sm">
+                  <span className="flex-shrink-0 w-8 h-8 bg-earth-600 text-cream-50 rounded-full flex items-center justify-center font-display font-bold text-sm">
+                    {i + 1}
+                  </span>
+                  <p className="text-bark-700 leading-relaxed">{rule}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
