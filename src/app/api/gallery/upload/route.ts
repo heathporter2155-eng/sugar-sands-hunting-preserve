@@ -19,7 +19,6 @@ export async function POST(request: Request) {
 
     const formData = await request.formData();
     const file = formData.get("file") as File;
-    const category = (formData.get("category") as string) || "property";
 
     if (!file) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
@@ -28,10 +27,7 @@ export async function POST(request: Request) {
     const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
     const timestamp = Date.now();
     const safeName = `${timestamp}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-    
-    // All member uploads go to pending — admin assigns category during approval
-    const prefix = "pending";
-    const path = `${prefix}/${safeName}`;
+    const path = `pending/${safeName}`;
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
@@ -50,12 +46,14 @@ export async function POST(request: Request) {
       .from("gallery-photos")
       .getPublicUrl(path);
 
+    const uploaderName = profile?.full_name || user.email || "A member";
+
     return NextResponse.json({
       success: true,
       path,
       url: urlData.publicUrl,
       status: "pending",
-      uploadedBy: profile?.full_name || user.email,
+      uploadedBy: uploaderName,
     });
   } catch {
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

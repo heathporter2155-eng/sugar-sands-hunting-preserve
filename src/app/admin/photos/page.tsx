@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 interface StoragePhoto {
   id: string;
@@ -137,7 +136,12 @@ export default function AdminGalleryManagePage() {
                 {pending.map((photo) => (
                   <div key={photo.path} className="bg-white rounded-sm shadow-sm border border-earth-200 overflow-hidden">
                     <div className="relative aspect-square">
-                      <Image src={photo.url} alt={photo.name} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={photo.url}
+                        alt={photo.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="p-4">
                       <p className="text-bark-500 text-xs mb-3 truncate">{photo.name}</p>
@@ -190,7 +194,12 @@ export default function AdminGalleryManagePage() {
                 {approved.map((photo) => (
                   <div key={photo.path} className="bg-white rounded-sm shadow-sm border border-earth-200 overflow-hidden group">
                     <div className="relative aspect-square">
-                      <Image src={photo.url} alt={photo.name} fill className="object-cover" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={photo.url}
+                        alt={photo.name}
+                        className="w-full h-full object-cover"
+                      />
                       <div className="absolute top-2 left-2">
                         <span className={`text-xs px-2 py-0.5 rounded font-medium ${
                           photo.category === "property" ? "bg-blue-100 text-blue-800" :
