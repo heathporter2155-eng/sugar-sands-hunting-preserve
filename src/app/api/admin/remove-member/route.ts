@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     }
 
     const adminSupabase = createAdminClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_URL || "https://umaochzwpldehqyfzbam.supabase.co",
       serviceRoleKey
     );
 
