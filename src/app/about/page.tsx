@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "About Sugar Sands Hunting Preserve | Private Hunting Club Watersound FL",
-  description: "Learn about Sugar Sands Hunting Preserve — a private hunting club on a managed pine plantation in South Walton, Florida. Deer hunting, turkey hunting, and wildlife stewardship since 1999.",
+  title: "About Sugar Sands Hunting Preserve | Private Hunting Club South Walton FL",
+  description: "Sugar Sands Hunting Preserve is a private hunting club on a managed pine plantation in Watersound, South Walton, Florida. Deer hunting, turkey hunting, bear hunting, and wildlife stewardship since 1999. Walton County's premier hunting preserve near Destin, 30A, and Freeport.",
 };
 
 export default function AboutPage() {

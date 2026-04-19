@@ -204,6 +204,56 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* SEO Content Section */}
+      <section className="aged-paper py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-earth-500 tracking-[0.3em] uppercase text-sm font-body font-medium mb-4">
+              About the Preserve
+            </p>
+            <h2 className="section-heading">
+              South Walton&apos;s Premier
+              <span className="block text-pine-700 italic font-medium">Private Hunting Club</span>
+            </h2>
+          </div>
+
+          <div className="prose prose-lg max-w-none text-bark-700 leading-relaxed space-y-6">
+            <p>
+              Sugar Sands Hunting Preserve is a private, members-only hunting club located in
+              Watersound, Florida — in the heart of South Walton County along the Emerald Coast.
+              Established in 1999, our preserve spans hundreds of acres of managed longleaf pine
+              plantation, native Florida hardwoods, food plots, and natural wildlife corridors.
+            </p>
+            <p>
+              Our members enjoy deer hunting, turkey hunting, and bear hunting in one of the
+              Florida Panhandle&apos;s most carefully managed private properties. We practice
+              year-round wildlife management including food plot cultivation, controlled burns,
+              timber management, and trail camera monitoring to maintain a healthy, thriving
+              ecosystem.
+            </p>
+            <p>
+              Located near Destin, 30A, Freeport, and Santa Rosa Beach, Sugar Sands offers
+              a rare opportunity for hunters in the Northwest Florida and Walton County area
+              to access quality private hunting land. Unlike public hunting areas, our preserve
+              provides an exclusive, well-managed environment where members and their families
+              can enjoy the outdoors in a safe, controlled setting.
+            </p>
+            <p>
+              Whether you&apos;re an experienced hunter looking for private hunting land near
+              Panama City Beach, a family seeking a hunting club in the Florida Panhandle, or
+              someone passionate about wildlife stewardship in South Walton — Sugar Sands
+              Hunting Preserve is where tradition, family, and conservation come together.
+            </p>
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link href="/contact" className="btn-earth">
+              Inquire About Membership
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
