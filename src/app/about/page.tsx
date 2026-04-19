@@ -42,7 +42,7 @@ export default function AboutPage() {
             <p>
               Sugar Sands Hunting Preserve was born from a simple truth: the best moments in life
               happen outdoors, with the people you love, on land you care for. Set among the towering
-              longleaf pines and sugar-white sand trails of South Walton County, Florida, our preserve
+              pines and sugar-white sand trails of South Walton, our preserve
               is a place where time slows down and what matters most comes into focus.
             </p>
 
@@ -69,8 +69,7 @@ export default function AboutPage() {
               Stewardship First
             </h3>
             <p>
-              We take our role as stewards seriously. Through selective timber
-              management, food plot cultivation, and wildlife monitoring, we actively manage the
+              We take our role as stewards seriously. Through selective deer management, food plot cultivation, and wildlife monitoring, we actively manage the
               land to promote biodiversity and healthy game populations. Every decision we make
               is guided by a simple question: <em>will this land be better for the next generation?</em>
             </p>
@@ -82,7 +81,7 @@ export default function AboutPage() {
               Sugar Sands is a place where families grow together. Where children learn respect
               for nature, patience, and responsibility. Where friendships are forged over shared
               experiences in the field. Our members aren&apos;t just hunters — they&apos;re
-              conservationists, mentors, and neighbors who share a deep connection to this land
+              conservationists, mentors, friends, and neighbors who share a deep connection to this land
               and to each other.
             </p>
           </div>
