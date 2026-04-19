@@ -1,12 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ChangePasswordPage() {
-  const searchParams = useSearchParams();
   const isNewMember = typeof window !== "undefined" && document.referrer.includes("callback");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
