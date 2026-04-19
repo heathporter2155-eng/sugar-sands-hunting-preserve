@@ -3,12 +3,9 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 
-const CATEGORIES = ["property", "wildlife", "harvest"];
-
 export default function MemberUploadPage() {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [category, setCategory] = useState("property");
   const [status, setStatus] = useState<"idle" | "uploading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -28,7 +25,6 @@ export default function MemberUploadPage() {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("category", category);
 
     try {
       const res = await fetch("/api/gallery/upload", { method: "POST", body: formData });
@@ -40,11 +36,7 @@ export default function MemberUploadPage() {
         return;
       }
 
-      if (data.status === "pending") {
-        setMessage("Photo submitted for admin approval. Thanks!");
-      } else {
-        setMessage("Photo uploaded and live in the gallery!");
-      }
+      setMessage("Photo submitted for admin approval. Thanks!");
       setStatus("success");
       setFile(null);
       setPreview(null);
@@ -94,29 +86,6 @@ export default function MemberUploadPage() {
                 <Image src={preview} alt="Preview" fill className="object-contain" />
               </div>
             )}
-
-            {/* Category */}
-            <div className="mb-6">
-              <label className="block text-sm font-body font-medium text-bark-700 mb-2">
-                Category
-              </label>
-              <div className="flex gap-2">
-                {CATEGORIES.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setCategory(cat)}
-                    className={`flex-1 px-3 py-2 rounded-sm text-sm font-medium transition-colors ${
-                      category === cat
-                        ? "bg-pine-700 text-cream-50"
-                        : "bg-cream-100 text-bark-600 hover:bg-earth-200 border border-earth-200"
-                    }`}
-                  >
-                    {cat === "property" ? "🌲" : cat === "wildlife" ? "🦌" : "🎯"}{" "}
-                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                  </button>
-                ))}
-              </div>
-            </div>
 
             {/* Status messages */}
             {status === "success" && (

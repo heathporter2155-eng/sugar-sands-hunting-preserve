@@ -29,9 +29,8 @@ export async function POST(request: Request) {
     const timestamp = Date.now();
     const safeName = `${timestamp}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
     
-    // Admin uploads go straight to approved, members go to pending
-    const isAdmin = profile?.role === "admin";
-    const prefix = isAdmin ? `approved/${category}` : "pending";
+    // All member uploads go to pending — admin assigns category during approval
+    const prefix = "pending";
     const path = `${prefix}/${safeName}`;
 
     const buffer = Buffer.from(await file.arrayBuffer());
@@ -55,7 +54,7 @@ export async function POST(request: Request) {
       success: true,
       path,
       url: urlData.publicUrl,
-      status: isAdmin ? "approved" : "pending",
+      status: "pending",
       uploadedBy: profile?.full_name || user.email,
     });
   } catch {
