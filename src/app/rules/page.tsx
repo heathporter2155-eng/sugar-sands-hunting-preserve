@@ -53,19 +53,20 @@ export default function RulesPage() {
       {/* Rules Content */}
       <section className="aged-paper py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          {/* General Rules */}
           <div className="mb-16">
-            <h2 className="section-heading mb-8">General Rules</h2>
+            <h2 className="section-heading mb-8">Club Rules</h2>
             <div className="space-y-4">
               {[
-                "All members and guests must sign in on the HuntStand virtual sign-in board before entering the property.",
-                "All Florida Fish and Wildlife Conservation Commission (FWC) regulations must be followed at all times.",
-                "Valid Florida hunting licenses and all required permits must be in possession while hunting.",
-                "Members are responsible for the conduct of their guests at all times.",
-                "No member shall bring more than one guest per visit unless approved by the administrator.",
-                "All harvested game must be reported to the administrator within 24 hours.",
-                "No hunting under the influence of alcohol or drugs. Zero tolerance policy.",
-                "All members must participate in at least one workday per season to maintain membership.",
+                "Gates must be kept locked at all times — no exceptions. If you have a guest or family member en route, meet them at the gate. Do not leave gates open or unlocked.",
+                "Do not drive around gates or make new trails leading into or off our lease. Our boundaries are our first line of defense.",
+                "During hunting season, all members are required to sign in via our virtual sign-in board on the HuntStand app.",
+                "We will follow all FWC rules and regulations pertaining to hunting whitetail deer. We do not enforce antler restrictions above and beyond FWC guidelines as to improve the quality of the hunt for our guests and children. Having said that, it is the responsibility of the primary members to lead by example and strive to harvest quality whitetail. Turkey hunting is only allowed during spring season, shotgun only, and no baiting.",
+                "All members, guests, and family members must have in possession a valid Florida hunting license and appropriate permits if applicable.",
+                "All guests and family members must be accompanied by the respective primary member at all times while on the property. No member shall bring more than one guest per visit. Members are responsible for the conduct of their guests at all times.",
+                "All game must be checked on the website within 24 hours of harvest. Uploaded pictures to our photo album are encouraged.",
+                "No hunting under the influence of drugs or alcohol.",
+                "Know your target and what lies beyond!",
+                "Respect fellow hunters, be safe, and have fun!",
               ].map((rule, i) => (
                 <div key={i} className="flex gap-4 p-4 bg-cream-100 border border-earth-200 rounded-sm">
                   <span className="flex-shrink-0 w-8 h-8 bg-pine-700 text-cream-50 rounded-full flex items-center justify-center font-display font-bold text-sm">
@@ -74,79 +75,6 @@ export default function RulesPage() {
                   <p className="text-bark-700 leading-relaxed">{rule}</p>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Safety */}
-          <div className="mb-16">
-            <h2 className="section-heading mb-8">Safety Requirements</h2>
-            <div className="bg-red-50 border border-red-200 rounded-sm p-6 mb-6">
-              <p className="text-red-800 font-display font-semibold text-lg mb-2">
-                ⚠️ Safety is Non-Negotiable
-              </p>
-              <p className="text-red-700 text-sm">
-                Violation of any safety rule may result in immediate and permanent revocation of membership.
-              </p>
-            </div>
-            <div className="space-y-4">
-              {[
-                "Hunter orange must be worn during all gun seasons as required by FWC regulations.",
-                "Tree stand safety harnesses are mandatory. No exceptions.",
-                "All firearms must be unloaded when transported in vehicles on the property.",
-                "Know your target and what is beyond it. No shooting toward roads, structures, or other stands.",
-                "All tree stands and blinds must be approved by the administrator before installation.",
-                "No shooting from or across any road or trail on the property.",
-                "All members must complete a safety orientation before their first hunt.",
-              ].map((rule, i) => (
-                <div key={i} className="flex gap-4 p-4 bg-cream-100 border border-earth-200 rounded-sm">
-                  <span className="flex-shrink-0 w-8 h-8 bg-red-700 text-cream-50 rounded-full flex items-center justify-center font-display font-bold text-sm">
-                    !
-                  </span>
-                  <p className="text-bark-700 leading-relaxed">{rule}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Property Rules */}
-          <div className="mb-16">
-            <h2 className="section-heading mb-8">Property & Stewardship</h2>
-            <div className="space-y-4">
-              {[
-                "No littering. Pack out everything you bring in.",
-                "No cutting of live trees without administrator approval.",
-                "Food plots are maintained for wildlife — no unauthorized planting or modification.",
-                "All gates must be closed and locked after entry and exit.",
-                "No ATVs or UTVs without prior approval. Designated trails only.",
-                "Report any property damage, trespassing, or suspicious activity to the administrator immediately.",
-              ].map((rule, i) => (
-                <div key={i} className="flex gap-4 p-4 bg-cream-100 border border-earth-200 rounded-sm">
-                  <span className="flex-shrink-0 w-8 h-8 bg-earth-600 text-cream-50 rounded-full flex items-center justify-center font-display font-bold text-sm">
-                    {i + 1}
-                  </span>
-                  <p className="text-bark-700 leading-relaxed">{rule}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Guest Policy */}
-          <div className="mb-16">
-            <h2 className="section-heading mb-8">Guest Policy</h2>
-            <div className="bg-pine-50 border border-pine-200 rounded-sm p-6 space-y-3">
-              <p className="text-bark-700 leading-relaxed">
-                Members may bring guests with prior notification to the administrator. All guests must:
-              </p>
-              <ul className="list-disc list-inside text-bark-700 space-y-2 ml-4">
-                <li>Sign in on the HuntStand board</li>
-                <li>Possess valid Florida hunting licenses and permits</li>
-                <li>Be accompanied by the sponsoring member at all times</li>
-                <li>Follow all club rules and regulations</li>
-                <li>Complete a guest waiver before hunting</li>
-              </ul>
-              <p className="text-bark-600 text-sm italic mt-4">
-                The sponsoring member assumes full responsibility for their guest&apos;s conduct and safety.
-              </p>
             </div>
           </div>
         </div>
