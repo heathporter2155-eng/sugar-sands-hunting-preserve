@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminServerClient } from "@/lib/supabase/admin";
+import { sendUploadNotification } from "@/lib/email";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -47,6 +48,9 @@ export async function POST(request: Request) {
       .getPublicUrl(path);
 
     const uploaderName = profile?.full_name || user.email || "A member";
+
+    // Send email notification to admin
+    await sendUploadNotification(uploaderName);
 
     return NextResponse.json({
       success: true,
