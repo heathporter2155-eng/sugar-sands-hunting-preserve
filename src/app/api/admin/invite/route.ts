@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     // Invite user via Supabase Auth (sends an email)
     const { data, error } = await adminSupabase.auth.admin.inviteUserByEmail(email, {
       data: { full_name: fullName || "" },
-      redirectTo: `${new URL(request.url).origin}/auth/callback`,
+      redirectTo: "https://sugarsandshuntingpreserve.com/auth/callback",
     });
 
     if (error) {
