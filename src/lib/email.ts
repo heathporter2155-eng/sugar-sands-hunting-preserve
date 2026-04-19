@@ -3,8 +3,8 @@ import { Resend } from "resend";
 const resend = new Resend("re_DnnZx3kt_Med3777VGXCa4EuYdSnz1YGk");
 
 const ADMIN_EMAIL = "heathporter2155@gmail.com";
-// Using Resend shared domain until sugarsandshuntingpreserve.com SPF records verify
-const FROM_EMAIL = "Sugar Sands <onboarding@resend.dev>";
+// Custom domain fully verified on Resend (2026-04-19)
+const FROM_EMAIL = "Sugar Sands <noreply@sugarsandshuntingpreserve.com>";
 const SITE_URL = "https://sugarsandshuntingpreserve.com";
 
 export async function sendUploadNotification(uploaderName: string) {
