@@ -43,10 +43,16 @@ export default async function AdminPage() {
               ← Harvest Log
             </Link>
             <Link
+              href="/admin/photos"
+              className="text-earth-400 hover:text-earth-300 text-sm font-body transition-colors font-medium"
+            >
+              📷 Manage Photos
+            </Link>
+            <Link
               href="/admin/gallery"
               className="text-earth-400 hover:text-earth-300 text-sm font-body transition-colors font-medium"
             >
-              📸 Manage Gallery
+              📸 Sort Gallery
             </Link>
             <LogoutButton />
           </div>

@@ -56,6 +56,12 @@ export default async function MembersPage() {
           <div className="mt-4 flex items-center justify-center gap-4 flex-wrap">
             <LogoutButton />
             <Link
+              href="/members/upload"
+              className="text-earth-400 hover:text-earth-300 text-sm font-body transition-colors font-medium"
+            >
+              📸 Upload Photo
+            </Link>
+            <Link
               href="/members/change-password"
               className="text-cream-300/60 hover:text-cream-100 text-sm font-body transition-colors"
             >
