@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/rules", label: "Rules & Regulations" },
   { href: "/gallery", label: "Gallery" },
   { href: "/members", label: "Members" },
+  { href: "/harvest-log", label: "Harvest Log" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -36,12 +37,7 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/auth/login"
-              className="ml-4 px-5 py-2 text-sm font-display font-semibold text-pine-950 bg-earth-400 hover:bg-earth-300 rounded-sm transition-colors tracking-wide"
-            >
-              Member Login
-            </Link>
+
           </div>
 
           {/* Mobile menu button */}
@@ -76,13 +72,7 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/auth/login"
-              onClick={() => setOpen(false)}
-              className="block px-4 py-3 mt-2 text-center font-display font-semibold text-pine-950 bg-earth-400 hover:bg-earth-300 rounded-sm tracking-wide"
-            >
-              Member Login
-            </Link>
+
           </div>
         </div>
       )}
