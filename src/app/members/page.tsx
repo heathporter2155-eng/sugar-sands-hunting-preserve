@@ -34,16 +34,6 @@ export default function MembersPage() {
             </p>
           </div>
 
-          <div className="relative w-full" style={{paddingBottom: '62.5%'}}>
-            <iframe
-              src={HUNTSTAND_URL}
-              title="Sugar Sands Hunting Preserve — Huntstand Property Map"
-              className="absolute inset-0 w-full h-full rounded-sm border border-earth-200"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
-
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
             <a
               href={HUNTSTAND_URL}
@@ -51,7 +41,7 @@ export default function MembersPage() {
               rel="noopener noreferrer"
               className="btn-primary"
             >
-              Open in Huntstand App
+              Open Map in Huntstand
             </a>
             <Link href="/contact" className="btn-earth">
               Contact Us
