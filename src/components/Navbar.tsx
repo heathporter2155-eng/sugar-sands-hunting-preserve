@@ -9,7 +9,7 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/rules", label: "Rules & Regulations" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/members", label: "Members" },
+  { href: "/members", label: "Maps" },
   { href: "/harvest-log", label: "Harvest Log" },
   { href: "/contact", label: "Contact" },
 ];
