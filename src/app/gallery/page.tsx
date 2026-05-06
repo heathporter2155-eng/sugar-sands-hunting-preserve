@@ -137,22 +137,30 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Filter tabs */}
+      {/* Filter tabs + submit */}
       <section className="aged-paper py-8 px-4 border-b border-earth-200">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-2">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2 rounded-sm text-sm font-body font-medium tracking-wide uppercase transition-colors ${
-                activeCategory === cat
-                  ? "bg-pine-700 text-cream-50"
-                  : "bg-cream-100 text-bark-600 hover:bg-earth-200 border border-earth-200"
-              }`}
-            >
-              {cat === "all" ? "All Photos" : cat}
-            </button>
-          ))}
+        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-5 py-2 rounded-sm text-sm font-body font-medium tracking-wide uppercase transition-colors ${
+                  activeCategory === cat
+                    ? "bg-pine-700 text-cream-50"
+                    : "bg-cream-100 text-bark-600 hover:bg-earth-200 border border-earth-200"
+                }`}
+              >
+                {cat === "all" ? "All Photos" : cat}
+              </button>
+            ))}
+          </div>
+          <a
+            href="mailto:heathporter2155@gmail.com?subject=Photo%20Submission%20%E2%80%94%20Sugar%20Sands%20Gallery&body=Hi%20Heath%2C%0A%0AI've%20attached%20a%20photo%20to%20share%20on%20the%20Sugar%20Sands%20Hunting%20Preserve%20gallery.%0A%0APhoto%20category%3A%20%5Bproperty%20%2F%20wildlife%20%2F%20harvest%5D%0APhoto%20description%3A%20%5Bwho%2C%20what%2C%20when%2C%20where%5D%0A%0AThank%20you!"
+            className="btn-primary text-sm"
+          >
+            📸 Submit a Photo
+          </a>
         </div>
       </section>
 
