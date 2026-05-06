@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 interface Photo {
@@ -10,22 +10,101 @@ interface Photo {
   category: string;
 }
 
+const photos: Photo[] = [
+  // HARVEST
+  { id: 22,  src: "/images/gallery/hunting-harvest-1.jpg",   alt: "Buck harvest",   category: "harvest" },
+  { id: 25,  src: "/images/gallery/hunting-harvest-4.jpg",   alt: "Buck harvest",   category: "harvest" },
+  { id: 26,  src: "/images/gallery/hunting-harvest-5.jpg",   alt: "Buck harvest",   category: "harvest" },
+  { id: 33,  src: "/images/gallery/photo-IMG_20120212_103918.jpg",  alt: "Hunting harvest", category: "harvest" },
+  { id: 34,  src: "/images/gallery/photo-IMG_20120213_102344.jpg",  alt: "Hunting harvest", category: "harvest" },
+  { id: 35,  src: "/images/gallery/photo-IMG_20120311_140442.jpg",  alt: "Hunting harvest", category: "harvest" },
+  { id: 36,  src: "/images/gallery/photo-IMG_20120314_092851.jpg",  alt: "Hunting harvest", category: "harvest" },
+  { id: 37,  src: "/images/gallery/photo-IMG_20161009_175656982.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 38,  src: "/images/gallery/photo-IMG_20161022_125925541_HDR.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 39,  src: "/images/gallery/photo-IMG_20170204_224036834.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 40,  src: "/images/gallery/photo-IMG_20170219_174600754_HDR.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 41,  src: "/images/gallery/photo-IMG_20170401_092234515.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 42,  src: "/images/gallery/photo-IMG_20170408_074103096.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 43,  src: "/images/gallery/photo-IMG_20170428_111638316.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 44,  src: "/images/gallery/photo-IMG_20170506_105502019.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 49,  src: "/images/gallery/photo-IMG_20191226_222642648.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 50,  src: "/images/gallery/photo-IMG_20191226_231022802.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 51,  src: "/images/gallery/photo-IMG_20200101_225124425.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 53,  src: "/images/gallery/photo-IMG_20200314_073657074.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 55,  src: "/images/gallery/photo-IMG_20200315_092343954_BURST000_COVER_TOP.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 56,  src: "/images/gallery/photo-IMG_20201001_180059120.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 58,  src: "/images/gallery/photo-IMG_20201222_165014002.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 59,  src: "/images/gallery/photo-IMG_20221231_172223889_BURST000_COVER_TOP.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 61,  src: "/images/gallery/photo-IMG_20231125_171617560_HDR.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 62,  src: "/images/gallery/photo-IMG_20231125_184951831_BURST000_COVER_TOP.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 66,  src: "/images/gallery/photo-IMG_20251101_175630987_HDR.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 95,  src: "/images/gallery/photo-Screenshot_20200220-094738_2.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 96,  src: "/images/gallery/photo-Screenshot_20200220-094832_2.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 97,  src: "/images/gallery/photo-Simply_HDR_1558273674562.jpg", alt: "Hunting harvest", category: "harvest" },
+  { id: 1,   src: "/images/gallery/property-pines-1.jpg",    alt: "Pine plantation rows", category: "harvest" },
+  { id: 2,   src: "/images/gallery/property-pines-2.jpg",    alt: "Pine forest landscape", category: "harvest" },
+  { id: 3,   src: "/images/gallery/property-pines-3.jpg",    alt: "Longleaf pine stand", category: "harvest" },
+  { id: 4,   src: "/images/gallery/property-land-1.jpg",     alt: "Preserve grounds", category: "harvest" },
+  { id: 6,   src: "/images/gallery/wildlife-trailcam-1.jpg", alt: "Trail camera capture", category: "harvest" },
+  { id: 21,  src: "/images/gallery/wildlife-deer-1.jpg",     alt: "Trail camera deer", category: "harvest" },
+
+  // WILDLIFE
+  { id: 8,   src: "/images/gallery/wildlife-trailcam-2.jpg",  alt: "Trail camera", category: "wildlife" },
+  { id: 9,   src: "/images/gallery/wildlife-trailcam-3.jpg",  alt: "Trail camera", category: "wildlife" },
+  { id: 11,  src: "/images/gallery/wildlife-trailcam-5.jpg",  alt: "Trail camera", category: "wildlife" },
+  { id: 12,  src: "/images/gallery/wildlife-trailcam-6.jpg",  alt: "Trail camera", category: "wildlife" },
+  { id: 13,  src: "/images/gallery/wildlife-trailcam-7.jpg",  alt: "Trail camera", category: "wildlife" },
+  { id: 14,  src: "/images/gallery/wildlife-trailcam-8.jpg",  alt: "Trail camera", category: "wildlife" },
+  { id: 15,  src: "/images/gallery/wildlife-trailcam-9.jpg",  alt: "Trail camera", category: "wildlife" },
+  { id: 16,  src: "/images/gallery/wildlife-trailcam-10.jpg", alt: "Trail camera", category: "wildlife" },
+  { id: 17,  src: "/images/gallery/wildlife-trailcam-11.jpg", alt: "Trail camera", category: "wildlife" },
+  { id: 18,  src: "/images/gallery/wildlife-trailcam-12.jpg", alt: "Trail camera", category: "wildlife" },
+  { id: 19,  src: "/images/gallery/wildlife-trailcam-13.jpg", alt: "Trail camera", category: "wildlife" },
+  { id: 20,  src: "/images/gallery/wildlife-trailcam-14.jpg", alt: "Trail camera", category: "wildlife" },
+  { id: 68,  src: "/images/gallery/photo-IMG_20260116_220030.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 69,  src: "/images/gallery/photo-IMG_20260417_135047.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 70,  src: "/images/gallery/photo-IMG_20260417_135135.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 71,  src: "/images/gallery/photo-IMG_20260417_135138.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 72,  src: "/images/gallery/photo-IMG_20260417_135142.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 73,  src: "/images/gallery/photo-IMG_20260417_135148.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 74,  src: "/images/gallery/photo-IMG_20260417_135151.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 75,  src: "/images/gallery/photo-IMG_20260417_135201.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 76,  src: "/images/gallery/photo-IMG_20260417_135207.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 77,  src: "/images/gallery/photo-IMG_20260417_135257.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 78,  src: "/images/gallery/photo-IMG_2811.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 79,  src: "/images/gallery/photo-IMG_2812.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 80,  src: "/images/gallery/photo-IMG_2821.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 81,  src: "/images/gallery/photo-IMG_2826.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 82,  src: "/images/gallery/photo-IMG_2903.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 83,  src: "/images/gallery/photo-IMG_2951.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 84,  src: "/images/gallery/photo-IMG_2982.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 85,  src: "/images/gallery/photo-IMG_3055.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 86,  src: "/images/gallery/photo-IMG_3063.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 89,  src: "/images/gallery/photo-IMG_3203.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 90,  src: "/images/gallery/photo-IMG_3246.jpg", alt: "Wildlife photo", category: "wildlife" },
+  { id: 91,  src: "/images/gallery/photo-IMG_3251.jpg", alt: "Wildlife photo", category: "wildlife" },
+
+  // PROPERTY
+  { id: 27,  src: "/images/gallery/photo-117773.jpg",   alt: "Preserve aerial view", category: "property" },
+  { id: 45,  src: "/images/gallery/photo-IMG_20190323_090827023_BURST000_COVER_TOP.jpg", alt: "Property", category: "property" },
+  { id: 46,  src: "/images/gallery/photo-IMG_20190324_092056300_HDR.jpg", alt: "Property", category: "property" },
+  { id: 47,  src: "/images/gallery/photo-IMG_20190329_122200333.jpg", alt: "Property", category: "property" },
+  { id: 48,  src: "/images/gallery/photo-IMG_20190331_064748362.jpg", alt: "Property", category: "property" },
+  { id: 54,  src: "/images/gallery/photo-IMG_20200314_074459600.jpg", alt: "Property", category: "property" },
+  { id: 57,  src: "/images/gallery/photo-IMG_20201115_163605524.jpg", alt: "Property", category: "property" },
+  { id: 60,  src: "/images/gallery/photo-IMG_20230803_062552870_HDR.jpg", alt: "Property", category: "property" },
+  { id: 63,  src: "/images/gallery/photo-IMG_20240519_074304334.jpg", alt: "Property", category: "property" },
+  { id: 64,  src: "/images/gallery/photo-IMG_20240519_074752904.jpg", alt: "Property", category: "property" },
+  { id: 65,  src: "/images/gallery/photo-IMG_20241130_151433345.jpg", alt: "Property", category: "property" },
+  { id: 88,  src: "/images/gallery/photo-IMG_3165.jpg",  alt: "Property", category: "property" },
+  { id: 5,   src: "/images/gallery/property-aerial-1.jpg", alt: "Aerial view of preserve", category: "property" },
+];
+
 const CATEGORIES = ["all", "property", "wildlife", "harvest"];
 
 export default function GalleryPage() {
-  const [photos, setPhotos] = useState<Photo[]>([]);
-  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightbox, setLightbox] = useState<number | null>(null);
-
-  const fetchPhotos = useCallback(async () => {
-    const res = await fetch("/api/gallery/photos");
-    const data = await res.json();
-    setPhotos(data.photos || []);
-    setLoading(false);
-  }, []);
-
-  useEffect(() => { fetchPhotos(); }, [fetchPhotos]);
 
   const filtered = activeCategory === "all"
     ? photos
@@ -58,18 +137,6 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Member upload notice */}
-      <section className="bg-earth-100 border-b border-earth-200 py-4 px-4">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <p className="text-bark-600 text-sm">
-            📸 Members can submit photos for the gallery after logging in.
-          </p>
-          <a href="/auth/login" className="text-pine-700 hover:text-pine-800 text-sm font-semibold">
-            Member Login →
-          </a>
-        </div>
-      </section>
-
       {/* Filter tabs */}
       <section className="aged-paper py-8 px-4 border-b border-earth-200">
         <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-2">
@@ -92,40 +159,27 @@ export default function GalleryPage() {
       {/* Photo Grid */}
       <section className="aged-paper py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          {loading ? (
-            <div className="text-center py-20">
-              <p className="text-bark-400 text-lg">Loading gallery...</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {filtered.map((photo) => (
-                <button
-                  key={photo.id}
-                  onClick={() => setLightbox(photo.id)}
-                  className="group relative aspect-square overflow-hidden rounded-sm bg-pine-100 focus:outline-none focus:ring-2 focus:ring-pine-500"
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-pine-950/0 group-hover:bg-pine-950/30 transition-colors duration-300 flex items-end">
-                    <p className="p-3 text-cream-50 text-xs font-body opacity-0 group-hover:opacity-100 transition-opacity">
-                      {photo.alt}
-                    </p>
-                  </div>
-                </button>
-              ))}
-            </div>
-          )}
-
-          {!loading && filtered.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-bark-400 text-lg">No photos in this category yet.</p>
-            </div>
-          )}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {filtered.map((photo) => (
+              <button
+                key={photo.id}
+                onClick={() => setLightbox(photo.id)}
+                className="group relative aspect-square overflow-hidden rounded-sm bg-pine-100 focus:outline-none focus:ring-2 focus:ring-pine-500"
+              >
+                <Image
+                  src={photo.src}                  alt={photo.alt}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
+                <div className="absolute inset-0 bg-pine-950/0 group-hover:bg-pine-950/30 transition-colors duration-300 flex items-end">
+                  <p className="p-3 text-cream-50 text-xs font-body opacity-0 group-hover:opacity-100 transition-opacity">
+                    {photo.alt}
+                  </p>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -145,7 +199,6 @@ export default function GalleryPage() {
           >
             ✕
           </button>
-
           <button
             onClick={(e) => { e.stopPropagation(); navigateLightbox("prev"); }}
             className="absolute left-4 top-1/2 -translate-y-1/2 text-cream-200 hover:text-cream-50 text-4xl z-10 p-2"
@@ -160,11 +213,7 @@ export default function GalleryPage() {
           >
             ›
           </button>
-
-          <div
-            className="relative max-w-4xl max-h-[80vh] w-full h-full"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="relative max-w-4xl max-h-[80vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
             <Image
               src={photos.find((p) => p.id === lightbox)?.src || ""}
               alt={photos.find((p) => p.id === lightbox)?.alt || ""}
@@ -173,7 +222,6 @@ export default function GalleryPage() {
               sizes="90vw"
             />
           </div>
-
           <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-cream-300/70 text-sm font-body">
             {photos.find((p) => p.id === lightbox)?.alt}
           </p>
